@@ -12,6 +12,10 @@ bld.add_from_file('ui.glade')
 win = bld.get_object('wnd')
 pic = bld.get_object('pic')
 
+inpa = bld.get_object('inp_a')
+inpb = bld.get_object('inp_b')
+inpc = bld.get_object('inp_c')
+
 def Gtkdialog(type, title, text):
     if type == "error":
         type = Gtk.MessageType.ERROR
@@ -60,9 +64,9 @@ def plot_triangle(a, b, c):
 
 def result(obj):
     try:
-        a = int(bld.get_object('inp_a').get_text())
-        b = int(bld.get_object('inp_b').get_text())
-        c = int(bld.get_object('inp_c').get_text())
+        a = int(inpa.get_text())
+        b = int(inpb.get_text())
+        c = int(inpc.get_text())
     except:
         dialog = Gtkdialog('error', 'Значения указаны неверно', 'Одно или несколько значений заполнены наверно.\nПринимаются только целые числа')
         plot_error("Неверные значения:\nЗначения должны быть целыми и положительными")
@@ -97,12 +101,42 @@ def result(obj):
 def destroy(obj):
     try:
         os.remove("plot.png")
+    except:
+        return
     finally:
         Gtk.main_quit()
 
+def cls_plt(obj):
+    pic.set_from_file()
+    try:
+        os.remove("plot.png")
+    except:
+        return
+    finally:
+        pass
+
+def cls_all(obj):
+    pic.set_from_file()
+    try:
+        os.remove('plot.png')
+    except:
+        return
+    finally:
+        inpa.set_text('')
+        inpb.set_text('')
+        inpc.set_text('')
+
+def cls_vals(obj):
+    inpa.set_text('')
+    inpb.set_text('')
+    inpc.set_text('')
+
 tab = {
     "onDestroy": destroy,
-    "btn_res": result
+    "btn_res": result,
+    "clear_plot": cls_plt,
+    "clear_inp": cls_vals,
+    "clear_all": cls_all
 }
 
 bld.connect_signals(tab)
