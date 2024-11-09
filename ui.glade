@@ -5,17 +5,18 @@
   <object class="GtkWindow" id="wnd">
     <property name="can-focus">False</property>
     <property name="title" translatable="yes">Kotlyarov</property>
+    <property name="resizable">False</property>
+    <property name="icon">icon.png</property>
     <signal name="destroy" handler="onDestroy" swapped="no"/>
     <child>
       <object class="GtkBox">
         <property name="visible">True</property>
         <property name="can-focus">False</property>
-        <property name="margin-left">20</property>
-        <property name="margin-right">20</property>
+        <property name="margin-start">20</property>
+        <property name="margin-end">20</property>
         <property name="margin-top">20</property>
         <property name="margin-bottom">20</property>
         <property name="spacing">5</property>
-        <property name="homogeneous">True</property>
         <child>
           <object class="GtkBox">
             <property name="visible">True</property>
@@ -32,7 +33,7 @@
                   <object class="GtkLabel">
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
-                    <property name="label" translatable="yes">A=</property>
+                    <property name="label" translatable="yes">AB =</property>
                   </object>
                   <packing>
                     <property name="expand">False</property>
@@ -44,6 +45,8 @@
                   <object class="GtkEntry" id="inp_a">
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
+                    <property name="placeholder-text" translatable="yes">2</property>
+                    <property name="input-purpose">digits</property>
                   </object>
                   <packing>
                     <property name="expand">False</property>
@@ -67,7 +70,7 @@
                   <object class="GtkLabel">
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
-                    <property name="label" translatable="yes">B=</property>
+                    <property name="label" translatable="yes">BC =</property>
                   </object>
                   <packing>
                     <property name="expand">False</property>
@@ -79,6 +82,8 @@
                   <object class="GtkEntry" id="inp_b">
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
+                    <property name="placeholder-text" translatable="yes">2</property>
+                    <property name="input-purpose">digits</property>
                   </object>
                   <packing>
                     <property name="expand">False</property>
@@ -102,7 +107,7 @@
                   <object class="GtkLabel">
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
-                    <property name="label" translatable="yes">C=</property>
+                    <property name="label" translatable="yes">AC =</property>
                   </object>
                   <packing>
                     <property name="expand">False</property>
@@ -114,6 +119,8 @@
                   <object class="GtkEntry" id="inp_c">
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
+                    <property name="placeholder-text" translatable="yes">1</property>
+                    <property name="input-purpose">phone</property>
                   </object>
                   <packing>
                     <property name="expand">False</property>
@@ -130,11 +137,12 @@
             </child>
             <child>
               <object class="GtkButton" id="but_res">
-                <property name="label" translatable="yes">result</property>
+                <property name="label">Вывести результат</property>
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
                 <property name="receives-default">True</property>
                 <signal name="clicked" handler="btn_res" swapped="no"/>
+                <accelerator key="Return" signal="clicked"/>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -150,17 +158,29 @@
           </packing>
         </child>
         <child>
-          <object class="GtkImage" id="pic">
-            <property name="width-request">310</property>
-            <property name="height-request">310</property>
+          <object class="GtkSeparator">
             <property name="visible">True</property>
             <property name="can-focus">False</property>
-            <property name="stock">gtk-missing-image</property>
+            <property name="margin-start">7</property>
+            <property name="margin-end">7</property>
           </object>
           <packing>
             <property name="expand">False</property>
             <property name="fill">True</property>
             <property name="position">1</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkImage" id="pic">
+            <property name="width-request">500</property>
+            <property name="height-request">310</property>
+            <property name="visible">True</property>
+            <property name="can-focus">False</property>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">2</property>
           </packing>
         </child>
       </object>
