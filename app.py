@@ -22,6 +22,13 @@ def Gtkdialog(type, title, text):
                              text=title,
                              secondary_text=text)
 
+def plot_error(text):
+    plt.figure(figsize=(5, 3.1), dpi=100)
+    plt.text(0.5, 0.5, str(text), ha='center', va='center', fontsize=12, color='red', wrap=True)
+    plt.axis("off")
+    plt.savefig("plot.png", bbox_inches="tight", pad_inches=0)
+    plt.close()
+
 def plot_triangle(a, b, c):
     A = np.array([0, 0])
     B = np.array([a, 0])
@@ -58,10 +65,12 @@ def result(obj):
         c = int(bld.get_object('inp_c').get_text())
     except:
         dialog = Gtkdialog('error', 'Значения указаны неверно', 'Одно или несколько значений заполнены наверно.\nПринимаются только целые числа')
+        plot_error("Неверные значения:\nЗначения должны быть целыми и положительными")
         pic.set_from_file('plot.png')
     else:
         if a + b <= c or a + c <= b or b + c <= a:
             dialog = Gtkdialog('error', 'Треугольник не существует', 'Треугольник с указанными значениями не существует')
+            plot_error("Неверные значения:\nНесуществующий треугольник")
             pic.set_from_file('plot.png')
         else:
             plot_triangle(a,b,c)
