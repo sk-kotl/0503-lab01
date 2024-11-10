@@ -100,28 +100,19 @@ def result(obj):
 
 def destroy(obj):
     try:
-        os.remove("plot.png")
+        if obj == bld.get_object('w_save'):
+            os.remove("plot.png")
+        else: 
+            return
     except:
         return
     finally:
         Gtk.main_quit()
 
-def cls_plt(obj):
-    pic.set_from_file()
-    try:
-        os.remove("plot.png")
-    except:
-        return
-    finally:
-        pass
-
-def cls_all(obj):
-    pic.set_from_file()
-    try:
-        os.remove('plot.png')
-    except:
-        return
-    finally:
+def clear(obj):
+    if obj == bld.get_object('clear_plot') or obj == bld.get_object('clear_all'):
+        pic.set_from_file()
+    if obj == bld.get_object('clear_inp') or obj == bld.get_object('clear_all'):
         inpa.set_text('')
         inpb.set_text('')
         inpc.set_text('')
@@ -134,9 +125,7 @@ def cls_vals(obj):
 tab = {
     "onDestroy": destroy,
     "btn_res": result,
-    "clear_plot": cls_plt,
-    "clear_inp": cls_vals,
-    "clear_all": cls_all
+    "clear": clear,
 }
 
 bld.connect_signals(tab)
