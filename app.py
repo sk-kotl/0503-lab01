@@ -10,6 +10,7 @@ bld = Gtk.Builder()
 bld.add_from_file('ui.glade')
 
 win = bld.get_object('wnd')
+accptwin = bld.get_object('act_exit_without_save')
 pic = bld.get_object('pic')
 
 inpa = bld.get_object('inp_a')
@@ -99,14 +100,16 @@ def result(obj):
         dialog.present()
 
 def destroy(obj):
-    try:
-        if obj == bld.get_object('w_save'):
+    if obj == bld.get_object('btn_yes'):
+        try:
             os.remove("plot.png")
-        else: 
+        except:
             return
-    except:
-        return
-    finally:
+        finally:
+             Gtk.main_quit()
+    if obj == bld.get_object('w_save'):
+        accptwin.show_all()
+    if obj == bld.get_object('save'):
         Gtk.main_quit()
 
 def clear(obj):
@@ -122,10 +125,14 @@ def cls_vals(obj):
     inpb.set_text('')
     inpc.set_text('')
 
+def disagree(obj):
+    accptwin.hide()
+
 tab = {
     "onDestroy": destroy,
     "btn_res": result,
     "clear": clear,
+    "disagree": disagree,
 }
 
 bld.connect_signals(tab)
