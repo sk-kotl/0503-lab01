@@ -1,4 +1,6 @@
 import gi
+import matplotlib
+matplotlib.use('GTK3Agg')
 import matplotlib.pyplot as plt
 import numpy as np
 import os
