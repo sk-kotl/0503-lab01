@@ -80,21 +80,22 @@ def result(obj):
             pic.set_from_file('plot.png')
         else:
             plot_triangle(a,b,c)
-            if (a == b == c):
-                dialog = Gtkdialog('info', 'Равносторонний треугольник', 'вы посмотрели на равносторонний треугольник')
-                return
-            if a == b or b == c or a == c:
-                dialog = Gtkdialog('info', 'Равнобедренный треугольник', "вы посмотрели на равнобедренный треугольник")
-                return
-            if  a**2 + b**2 == c**2:
-                dialog = Gtkdialog('info', 'Прямоугольный треугольник', "вы посмотрели на прямоугольный треугольник")
-                return
-            elif a**2 + b**2 < c**2:
-                dialog = Gtkdialog('info', 'Тупоугольный треугольник', "вы посмотрели на тупоугольный треугольник")
-                return
-            else:
-                dialog = Gtkdialog('info', 'Остроугольный треугольник', "вы посмотрели на остроугольный треугольник")
-                return
+            dialog = Gtkdialog('info', 'Разносторонний треугольник', 'вы посмотрели на разносторонний треугольник')
+            # if (a == b == c):
+            #     dialog = Gtkdialog('info', 'Равносторонний треугольник', 'вы посмотрели на равносторонний треугольник')
+            #     return
+            # if a == b or b == c or a == c:
+            #     dialog = Gtkdialog('info', 'Равнобедренный треугольник', "вы посмотрели на равнобедренный треугольник")
+            #     return
+            # if  a**2 + b**2 == c**2:
+            #     dialog = Gtkdialog('info', 'Прямоугольный треугольник', "вы посмотрели на прямоугольный треугольник")
+            #     return
+            # elif a**2 + b**2 < c**2:
+            #     dialog = Gtkdialog('info', 'Тупоугольный треугольник', "вы посмотрели на тупоугольный треугольник")
+            #     return
+            # else:
+            #     dialog = Gtkdialog('info', 'Остроугольный треугольник', "вы посмотрели на остроугольный треугольник")
+            #     return
     finally:
         pic.set_from_file('plot.png')
         dialog.connect('response', lambda d, self: d.destroy())
